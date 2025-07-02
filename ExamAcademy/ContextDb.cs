@@ -12,6 +12,11 @@ namespace ExamAcademy.Controller
     {
         public DbSet<Department> Departments { get; set; }
         public DbSet<Faculty> Facultys { get; set; }
+
+        public DbSet<Group> Groups { get; set; }
+
+        public DbSet<Curator> Curators { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-O6DMGPJ\\SQLEXPRESS;Database=EF_Academy;TrustServerCertificate=true;Trusted_Connection=True;");
@@ -20,11 +25,17 @@ namespace ExamAcademy.Controller
         protected override void OnModelCreating(ModelBuilder mb)
         {
 
-            
+      
           
 
             mb.ApplyConfiguration(new DepartmentConfig());
             mb.ApplyConfiguration(new FacultyConfig());
+            mb.ApplyConfiguration(new GroupConfig());
+            mb.ApplyConfiguration(new CuratorConfig());
+
+
+            mb.Entity<Group>().HasMany(p => p.CuratorList).WithMany(p => p.GroupsList);
+            mb.Entity<Group>().HasOne(p=>p.Department).WithMany(p=>p.GroupList);
 
         }
     }
@@ -51,7 +62,46 @@ namespace ExamAcademy.Controller
 
             tb.Property(p=>p.Financing).IsRequired().HasColumnType("money").HasDefaultValue("0");
             tb.Property(p=>p.Name).IsRequired().HasColumnType("nvarchar(100)");
+            
+        }
+    }
+
+    public class GroupConfig : IEntityTypeConfiguration<Group>
+    {
+        public void Configure(EntityTypeBuilder<Group> tb)
+        {
+            tb.HasKey(p => p.Id);//// clastered primary key
+            tb.HasAlternateKey(p => p.Name);///// IsUnique  non clastered key
+            tb.ToTable(t => t.HasCheckConstraint("CK_Cours", "Cours>=1 and Cours<=5"));
+          
+
+            tb.Property(p => p.Name).IsRequired().HasDefaultValue("G").HasColumnType("nvarchar(10)"); 
+
+
+            tb.Property(p => p.Cours).IsRequired().HasColumnName("Year");
+
+           
+
+            
 
         }
     }
+    public class CuratorConfig : IEntityTypeConfiguration<Curator>
+    {
+        public void Configure(EntityTypeBuilder<Curator> tb)
+        {
+            tb.HasKey(p => p.Id);//// clastered primary key
+         
+         
+
+
+            tb.Property(p => p.Name).IsRequired().HasDefaultValue("N").HasColumnType("nvarchar(max)");
+            tb.Property(p => p.Surname).IsRequired().HasDefaultValue("S").HasColumnType("nvarchar(max)");
+
+
+          
+
+        }
+    }
+
 }

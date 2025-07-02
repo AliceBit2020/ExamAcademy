@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ExamAcademy.Model
 {
-    internal class Curator
+    public class Curator
     {
         public int Id { get; set; }
         public string Name { get; set; } = "default";
         public string Surname { get; set; } = "default";
+
+        public List<Group> GroupsList { get; set; } = new List<Group>();
     }
 }
