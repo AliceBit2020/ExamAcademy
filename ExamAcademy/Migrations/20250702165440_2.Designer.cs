@@ -3,6 +3,7 @@ using ExamAcademy.Controller;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamAcademy.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250702165440_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,11 +24,7 @@ namespace ExamAcademy.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD
-            modelBuilder.Entity("CuratorGroup", b =>
-=======
             modelBuilder.Entity("CuratorGroups", b =>
->>>>>>> 3125c14 (1)
                 {
                     b.Property<int>("CuratorListId")
                         .HasColumnType("int");
@@ -37,11 +36,7 @@ namespace ExamAcademy.Migrations
 
                     b.HasIndex("GroupsListId");
 
-<<<<<<< HEAD
-                    b.ToTable("CuratorGroup");
-=======
                     b.ToTable("CuratorGroups");
->>>>>>> 3125c14 (1)
                 });
 
             modelBuilder.Entity("ExamAcademy.Model.Curator", b =>
@@ -125,11 +120,7 @@ namespace ExamAcademy.Migrations
                     b.ToTable("Facultys");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("ExamAcademy.Model.Group", b =>
-=======
             modelBuilder.Entity("ExamAcademy.Model.Groups", b =>
->>>>>>> 3125c14 (1)
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -161,11 +152,7 @@ namespace ExamAcademy.Migrations
                         });
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("CuratorGroup", b =>
-=======
             modelBuilder.Entity("CuratorGroups", b =>
->>>>>>> 3125c14 (1)
                 {
                     b.HasOne("ExamAcademy.Model.Curator", null)
                         .WithMany()
@@ -173,11 +160,7 @@ namespace ExamAcademy.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-                    b.HasOne("ExamAcademy.Model.Group", null)
-=======
                     b.HasOne("ExamAcademy.Model.Groups", null)
->>>>>>> 3125c14 (1)
                         .WithMany()
                         .HasForeignKey("GroupsListId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -195,11 +178,7 @@ namespace ExamAcademy.Migrations
                     b.Navigation("Faculty");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("ExamAcademy.Model.Group", b =>
-=======
             modelBuilder.Entity("ExamAcademy.Model.Groups", b =>
->>>>>>> 3125c14 (1)
                 {
                     b.HasOne("ExamAcademy.Model.Department", "Department")
                         .WithMany("GroupList")

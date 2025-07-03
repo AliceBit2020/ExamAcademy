@@ -14,5 +14,10 @@ namespace ExamAcademy.Interfaces
         public IEnumerable<T> Select();
         public T GetById(int id);
 
+<<<<<<< HEAD
+=======
+        public int GetIdByName(string name);
+
+>>>>>>> 3125c14 (1)
     }
 }

@@ -33,6 +33,15 @@ namespace ExamAcademy.Repository
             
         }
 
+<<<<<<< HEAD
+=======
+        public int GetIdByName(string name)
+        {
+            string query = "select Id from Departments as d where d.Name=@name";
+            int id = connection.Query<int>(query, new { @name = name }).Single();
+            return id;
+        }
+>>>>>>> 3125c14 (1)
         public bool Delete(Department dep)
         {
             var sql = "DELETE FROM Departments WHERE Id=@Id";

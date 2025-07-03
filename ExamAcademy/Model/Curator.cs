@@ -12,6 +12,10 @@ namespace ExamAcademy.Model
         public string Name { get; set; } = "default";
         public string Surname { get; set; } = "default";
 
+<<<<<<< HEAD
         public List<Group> GroupsList { get; set; } = new List<Group>();
+=======
+        public List<Groups> GroupsList { get; set; } = new List<Groups>();
+>>>>>>> 3125c14 (1)
     }
 }

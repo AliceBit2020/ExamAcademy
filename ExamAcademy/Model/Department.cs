@@ -20,7 +20,11 @@ namespace ExamAcademy.Model
 
         public Faculty Faculty { get; set; } = new Faculty();
 
+<<<<<<< HEAD
         public List<Group> GroupList { get; set; }=new List<Group>();
+=======
+        public List<Groups> GroupList { get; set; }=new List<Groups>();
+>>>>>>> 3125c14 (1)
 
         
     }

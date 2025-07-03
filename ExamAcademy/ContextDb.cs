@@ -34,8 +34,8 @@ namespace ExamAcademy.Controller
             mb.ApplyConfiguration(new CuratorConfig());
 
 
-            mb.Entity<Group>().HasMany(p => p.CuratorList).WithMany(p => p.GroupsList);
-            mb.Entity<Group>().HasOne(p=>p.Department).WithMany(p=>p.GroupList);
+            mb.Entity<Groups>().HasMany(p => p.CuratorList).WithMany(p => p.GroupsList);
+            mb.Entity<Groups>().HasOne(p=>p.Department).WithMany(p=>p.GroupList);
 
         }
     }
@@ -66,9 +66,9 @@ namespace ExamAcademy.Controller
         }
     }
 
-    public class GroupConfig : IEntityTypeConfiguration<Group>
+    public class GroupConfig : IEntityTypeConfiguration<Groups>
     {
-        public void Configure(EntityTypeBuilder<Group> tb)
+        public void Configure(EntityTypeBuilder<Groups> tb)
         {
             tb.HasKey(p => p.Id);//// clastered primary key
             tb.HasAlternateKey(p => p.Name);///// IsUnique  non clastered key
@@ -78,7 +78,7 @@ namespace ExamAcademy.Controller
             tb.Property(p => p.Name).IsRequired().HasDefaultValue("G").HasColumnType("nvarchar(10)"); 
 
 
-            tb.Property(p => p.Cours).IsRequired().HasColumnName("Year");
+            tb.Property(p => p.Cours).IsRequired();
 
            
 
